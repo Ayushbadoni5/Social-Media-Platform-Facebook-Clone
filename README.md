@@ -1,4 +1,4 @@
-# Social Media Platform (Like Facebook)
+# Social Media Platform: Facebook Clone
 
 A backend-only social media application built with Java and Spring Boot.
 
