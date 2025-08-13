@@ -1,6 +1,6 @@
 package com.facebook.Service;
 
-import com.facebook.Config.JWTTokenHelper;
+import com.facebook.Security.JWTTokenHelper;
 import com.facebook.Dtos.SignInRequest;
 import com.facebook.Dtos.SignInResponse;
 import com.facebook.Dtos.SignUpRequest;

@@ -1,5 +1,6 @@
 package com.facebook.Config;
 
+import com.facebook.Security.JWTAuthenticationFilter;
 import com.facebook.Service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -39,7 +40,6 @@ public class WebSecurity {
                         ).permitAll()
                         .requestMatchers("/","/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())

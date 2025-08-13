@@ -1,4 +1,4 @@
-package com.facebook.Config;
+package com.facebook.Security;
 
 import com.facebook.Entities.User;
 import io.jsonwebtoken.Claims;
@@ -31,7 +31,6 @@ public class JWTTokenHelper {
 
     public String generateToken(User user){
         Map<String,Object> claims = new HashMap<>();
-
         claims.put("id", user.getId().toString());
         claims.put("name", user.getName());
 
@@ -53,8 +52,8 @@ public class JWTTokenHelper {
     }
 
     private boolean isTokenExpired(String token) {
-        Date expiration = getAllClaimsFromToken(token).getExpiration();
-        return expiration.before(new Date());
+        Date expirationDate = getAllClaimsFromToken(token).getExpiration();
+        return expirationDate.before(new Date());
     }
 
     private Claims getAllClaimsFromToken(String token) {
