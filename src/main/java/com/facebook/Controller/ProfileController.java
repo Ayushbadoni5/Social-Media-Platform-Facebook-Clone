@@ -10,19 +10,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/profile")
+@RequestMapping("/api/users/me")
 public class ProfileController {
 
     @Autowired
     private ProfileService profileService;
 
-    @GetMapping("/myprofile")
+    @GetMapping
     public ResponseEntity<UserResponse> getMyProfile(Authentication authenticatedUser){
         UserResponse response = profileService.getMyProfile(authenticatedUser.getName());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PatchMapping("/update")
+    @PatchMapping
     public ResponseEntity<UserResponse> updateProfile(@RequestBody UserUpdate update, Authentication authenticatedUser){
         UserResponse response = profileService.updateMyProfile(authenticatedUser.getName(), update);
         return new ResponseEntity<>(response, HttpStatus.OK);

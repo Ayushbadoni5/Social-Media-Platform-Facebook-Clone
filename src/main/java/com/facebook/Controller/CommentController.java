@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/posts/comments/")
+@RequestMapping("/api")
 public class CommentController {
 
     @Autowired
     private CommentService commentService;
 
 
-    @PostMapping("/{postId}")
+    @PostMapping("/posts/{postId}/comments")
     public ResponseEntity<CommentResponse> addComment(@PathVariable UUID postId,
                                                       @RequestBody CommentRequest request,
                                                       Authentication authenticatedUser){
@@ -28,7 +28,7 @@ public class CommentController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping("/comments/{commentId}")
     public ResponseEntity<Void> deleteComment(@PathVariable UUID commentId,
                                               Authentication authenticatedUser){
 
@@ -36,7 +36,7 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/{postId}")
+    @GetMapping("/posts/{postId}/comments")
     public ResponseEntity<List<CommentResponse>> getComments(@PathVariable UUID postId,
                                                              @RequestParam(defaultValue = "0") int page,
                                                              @RequestParam(defaultValue = "10") int size) {

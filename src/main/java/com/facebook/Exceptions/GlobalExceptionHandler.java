@@ -17,6 +17,6 @@ public class GlobalExceptionHandler{
 
         Map<String,String> response = new HashMap<>();
         response.put("meassage",ex.getMessage());
-        return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.NOT_FOUND);
     }
 }

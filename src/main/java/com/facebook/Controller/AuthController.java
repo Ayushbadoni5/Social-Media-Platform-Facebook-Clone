@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.Instant;
-
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -31,7 +29,7 @@ public class AuthController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public ResponseEntity<SignInResponse> signIn(@RequestBody SignInRequest request){
 
             SignInResponse response = authService.signIn(request);
@@ -40,18 +38,10 @@ public class AuthController {
 
     }
 
-    @PostMapping("/signout")
-    public ResponseEntity<ApiResponse> signout(HttpServletRequest request) {
+    @PostMapping("/logout")
+    public ResponseEntity<Void> signOut(HttpServletRequest request) {
         User user = authService.signOut(request);
-
-        ApiResponse response = ApiResponse.builder()
-                .message("Your account logged out successfully")
-                .userId(user.getId())
-                .username(user.getName())
-                .timestamp(Instant.now())
-                .build();
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.NO_CONTENT);
     }
 
 }

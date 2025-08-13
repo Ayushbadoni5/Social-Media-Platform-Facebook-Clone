@@ -22,7 +22,7 @@ public class LikeController {
     private UserRepository userRepository;
 
 
-    @PostMapping("/like/{postId}")
+    @PostMapping("/{postId}/likes")
     public ResponseEntity<Void> likePost(@PathVariable UUID postId,
                                          Authentication authenticatedUser){
         likeService.likePost(authenticatedUser.getName(),postId);
@@ -30,7 +30,7 @@ public class LikeController {
     }
 
 
-    @DeleteMapping("/removelike/{postId}")
+    @DeleteMapping("/{postId}/likes")
     public ResponseEntity<Void> removeLike(@PathVariable UUID postId, Authentication authenticatedUser){
 
 
