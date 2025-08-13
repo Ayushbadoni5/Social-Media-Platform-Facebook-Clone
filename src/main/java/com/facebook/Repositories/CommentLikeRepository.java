@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface LikeACommentRepository extends JpaRepository<LikeAComment, UUID> {
+public interface CommentLikeRepository extends JpaRepository<LikeAComment, UUID> {
     Optional<LikeAComment> findAllByUserAndComment(User user, Comment comment);
 
     long countByComment(Comment comment);

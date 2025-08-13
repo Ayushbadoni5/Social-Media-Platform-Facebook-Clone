@@ -25,8 +25,9 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public void likePost(String email, UUID postId) {
-        User user = userRepository.findByEmail(email).orElseThrow(
-                ()-> new RuntimeException("User not found"));
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(()-> new RuntimeException("User not found"));
 
         Post post = postRepository.findById(postId).orElseThrow(
                 ()-> new RuntimeException("Post not found"));
@@ -45,8 +46,9 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public void removeLike(String email, UUID postId) {
-        User user = userRepository.findByEmail(email).orElseThrow(
-                ()-> new RuntimeException("User not found"));
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(()-> new RuntimeException("User not found"));
 
         Post post = postRepository.findById(postId).orElseThrow(
                 ()-> new RuntimeException("Post not found"));

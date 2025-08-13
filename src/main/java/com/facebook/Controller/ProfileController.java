@@ -22,7 +22,7 @@ public class ProfileController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/update")
+    @PatchMapping("/update")
     public ResponseEntity<UserResponse> updateProfile(@RequestBody UserUpdate update, Authentication authenticatedUser){
         UserResponse response = profileService.updateMyProfile(authenticatedUser.getName(), update);
         return new ResponseEntity<>(response, HttpStatus.OK);

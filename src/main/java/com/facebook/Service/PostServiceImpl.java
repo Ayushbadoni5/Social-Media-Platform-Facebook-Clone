@@ -37,7 +37,9 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public PostResponse createPost(String email, PostRequest request) {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(()-> new RuntimeException("User not found"));
 
         Post post = Post.builder()
                 .content(request.getContent())
@@ -59,7 +61,7 @@ public class PostServiceImpl implements PostService{
     public void deletePost(String email, UUID postId) {
 
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(()-> new RuntimeException("User not found"));
 
         Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found"));
 

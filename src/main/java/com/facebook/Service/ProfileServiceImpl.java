@@ -15,8 +15,9 @@ public class ProfileServiceImpl implements ProfileService{
 
     @Override
     public UserResponse getMyProfile(String email) {
+
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(()-> new RuntimeException("User not found"));
 
         return UserResponse.builder()
                 .id(user.getId())
@@ -31,6 +32,7 @@ public class ProfileServiceImpl implements ProfileService{
 
     @Override
     public UserResponse updateMyProfile(String email, UserUpdate update) {
+
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new RuntimeException("User not found"));
 

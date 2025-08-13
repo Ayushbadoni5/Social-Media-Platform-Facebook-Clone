@@ -28,11 +28,12 @@ public class CommentServiceImpl implements CommentService{
     private UserRepository userRepository;
 
     @Autowired
-    private LikeACommentRepository likeACommentRepository;
+    private CommentLikeRepository commentLikeRepository;
 
 
     @Override
     public CommentResponse addComment(String email, UUID postId, CommentRequest request) {
+
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new RuntimeException("User not found"));
 
@@ -70,7 +71,7 @@ public class CommentServiceImpl implements CommentService{
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(()-> new RuntimeException("Comment not found"));
 
-        if (!comment.getUser().getEmail().equals(email)){
+        if (!comment.getUser().getEmail().equals(user.getEmail())){
             throw new RuntimeException("You can delete only your own comment");
         }
 
@@ -96,7 +97,7 @@ public class CommentServiceImpl implements CommentService{
                         .content(comm.getContent())
                         .commenterName(comm.getUser().getName())
                         .createdAt(comm.getCreatedAt())
-                        .likesCount(likeACommentRepository.countByComment(comm))
+                        .likesCount(commentLikeRepository.countByComment(comm))
                         .build())
                 .collect(Collectors.toList());
     }
@@ -112,14 +113,11 @@ public class CommentServiceImpl implements CommentService{
         return comments.stream()
                 .map(comm -> CommentResponse.builder()
                         .id(comm.getId())
-                        .likesCount(likeACommentRepository.countByComment(comm))
+                        .likesCount(commentLikeRepository.countByComment(comm))
                         .content(comm.getContent())
                         .createdAt(comm.getCreatedAt())
                         .commenterName(comm.getUser().getName())
                         .build())
                 .toList();
     }
-
-
-
 }

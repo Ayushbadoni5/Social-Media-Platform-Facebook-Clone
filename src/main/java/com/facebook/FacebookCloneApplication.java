@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LetsmeetApiApplication {
+public class FacebookCloneApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LetsmeetApiApplication.class, args);
+		SpringApplication.run(FacebookCloneApplication.class, args);
 	}
 
 }

@@ -1,9 +1,7 @@
 package com.facebook.Controller;
 
-import com.facebook.Dtos.ApiResponse;
 import com.facebook.Dtos.PostRequest;
 import com.facebook.Dtos.PostResponse;
-import com.facebook.Entities.User;
 import com.facebook.Enums.PostSortType;
 import com.facebook.Repositories.UserRepository;
 import com.facebook.Service.CommentService;
@@ -14,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
 import java.util.Map;
 import java.util.UUID;
 
@@ -48,13 +45,11 @@ public class PostController {
 
 
     @DeleteMapping("{postId}")
-    public ResponseEntity<ApiResponse> deletePost(@PathVariable UUID postId, Authentication authenticatedUser){
+    public ResponseEntity<Void> deletePost(@PathVariable UUID postId, Authentication authenticatedUser){
 
-        User user = userRepository.findByEmail(authenticatedUser.getName()).orElseThrow(()-> new RuntimeException("User not found!"));
         postService.deletePost(authenticatedUser.getName(),postId);
 
-        ApiResponse response = new ApiResponse("Post deleted successfully",user.getId(), user.getName(),Instant.now());
-        return new ResponseEntity<>(response,HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
