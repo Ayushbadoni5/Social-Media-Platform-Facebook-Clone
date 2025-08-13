@@ -33,7 +33,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
         String path = request.getServletPath();
 
-        // ✅ Bypass JWT check for Swagger
         if (path.startsWith("/v3/api-docs") || path.startsWith("/swagger-ui") || path.startsWith("/swagger-resources")) {
             filterChain.doFilter(request, response);
             return;

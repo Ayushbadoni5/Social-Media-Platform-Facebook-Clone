@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.letsmeet</groupId>
+	<groupId>com.facebookClone</groupId>
 	<artifactId>FaceBook</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>letsmeet-api</name>
+	<name>facebook-clone</name>
 	<description>Social connection backend </description>
 	<url/>
 	<licenses>
